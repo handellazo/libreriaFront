@@ -1,0 +1,74 @@
+.header {
+  margin-left: 250px;
+  height: 57px;
+  background-color: #c51212a8;
+  border-bottom: 2px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+}
+.header--large{
+  margin-left: 80px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.icon--size {
+  font-size: 1.5rem;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.left {
+  position: relative;
+}
+.bolita {
+  border: 1px solid black;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  background-color: lightgreen;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.perfil__photo {
+  overflow: hidden;
+  margin-bottom: 0px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+  height: 40px;
+  margin-left: 10px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.perfil__name {
+  margin: 0;
+}

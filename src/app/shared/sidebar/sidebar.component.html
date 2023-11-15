@@ -1,0 +1,24 @@
+<!-- los corchetes hacen que el atributo sea dinamico [ngClass] -->
+<aside [ngClass]="!sidebarStatusLarge ? 'aside': 'aside aside--large'">
+  <div>
+    <div class="sidebar-top">
+      <figure class="main-img m-0">
+        <!-- <img src="assets/img/logo.png" alt="" /> -->
+      </figure>
+      <div class="sidebar-textMain">
+        <p class="sidebar-top__text">HALDBRARI</p>
+      </div>
+    </div>
+    <!-- ** Sidebar MENU -->
+    <nav class="menu-container">
+      <ul class="nav">
+        <li class="nav__item" *ngFor="let menu of menus">
+          <a [routerLink]="menu.link">
+            <i class="{{ menu.icon }}" aria-hidden="true"></i>
+            <span class="text nav__link">{{ menu.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

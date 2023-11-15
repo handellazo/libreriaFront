@@ -1,0 +1,111 @@
+<input id="mostrar-modal" name="modal" type="radio" /> 
+  <label for="mostrar-modal"> Nuevo Libro </label>
+  <br>
+<div id="modal">
+    <div class="container">
+      <h3>AGREGAR NUEVO LIBRO</h3>
+      <form (submit)="addLibro()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="asin">ASIN:</label>
+              <input type="number" class="form-control" id="asin" name="asin" [(ngModel)]="libroNuevo.asin" required>
+            </div>
+    
+            <div class="form-group">
+              <label for="titulo">Titulo:</label>
+              <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="libroNuevo.titulo" required>
+            </div>
+
+            <div class="form-group">
+              <label for="lanzamiento">Fecha de Lanzamiento:</label>
+              <input type="date" class="form-control" id="lanzamiento" name="lanzamiento" [(ngModel)]="libroNuevo.lanzamiento" required>
+            </div>
+
+            <div class="form-group">
+              <label for="autor">Autor:</label>
+              <select class="custom-select" id="autor" [(ngModel)]="libroNuevo.id_autor" (change)="getIdAutor($event)" required>
+                <option selected value="0">Seleccionar Opcion</option>
+                <option *ngFor="let autor of autor" [ngValue]="autor.idautor">{{ autor.autor }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="categoria">Categoria:</label>
+              <select class="custom-select" id="categoria" [(ngModel)]="libroNuevo.id_categoria" (change)="getIdCategoria($event)" required>
+                <option selected value="0">Seleccionar Opcion</option>
+                <option *ngFor="let categoria of categoria" [ngValue]="categoria.idcategoria">{{ categoria.categoria }}</option>
+              </select>
+            </div>
+            
+            <!-- Otros campos para la primera columna -->
+          </div>
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="editorial">Editorial:</label>
+              <select class="custom-select" id="editorial" [(ngModel)]="libroNuevo.id_editorial" (change)="getIdEditorial($event)" required>
+                <option selected value="0">Seleccionar Opcion</option>
+                <option *ngFor="let editorial of editorial" [ngValue]="editorial.ideditorial">{{ editorial.editorial }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="idioma">Idioma:</label>
+              <input type="text" class="form-control" id="idioma" name="idioma" [(ngModel)]="libroNuevo.idioma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="paginas">Paginas:</label>
+              <input type="number" class="form-control" id="paginas" name="paginas" [(ngModel)]="libroNuevo.paginas" required>
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion">descripcion:</label>
+              <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="libroNuevo.descripcion" required>
+            </div>
+
+            <div class="form-group">
+              <label for="portada">portada:</label>
+              <input type="text" class="form-control" id="portada" name="portada" [(ngModel)]="libroNuevo.portada" required>
+            </div>
+          </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+    </div>
+  <input id="cerrar-modal" name="modal" type="radio" /> 
+<label for="cerrar-modal"> X </label> 
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ASIN</th>
+      <th scope="col">TITULO</th>
+      <th scope="col">AUTOR</th>
+      <th scope="col">CATEGORIA</th>
+      <th scope="col">EDITORIAL</th>
+      <th scope="col">PAGINAS</th>
+      <th scope="col"></th>
+      <!-- Agregar más encabezados si hay más propiedades en los elementos -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let libro of libro">
+      <td>{{ libro.asin }}</td>
+      <td>{{ libro.titulo }}</td>
+      <td>{{ libro.id_autor.autor }}</td>
+      <td>{{ libro.id_categoria.categoria }}</td>
+      <td>{{ libro.id_editorial.editorial }}</td>
+      <td>{{ libro.paginas }}</td>
+      <td>
+        <!-- Botón de editar -->
+        <button (click)="editarLibro(libro.asin)" class="btn btn-success">Editar</button>
+        <!-- Botón de eliminar -->
+        <button (click)="eliminarLibro(libro.asin)" class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

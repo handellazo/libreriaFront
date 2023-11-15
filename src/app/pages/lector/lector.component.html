@@ -1,0 +1,81 @@
+<input id="mostrar-modal" name="modal" type="radio" /> 
+  <label for="mostrar-modal"> Nuevo Lector </label>
+  <br>
+<div id="modal">
+    <div class="container">
+      <h3>AGREGAR NUEVO LECTOR</h3>
+      <form (submit)="addLector()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dnilector">DNI:</label>
+              <input type="number" class="form-control" id="dnilector" name="dnilector" [(ngModel)]="lectorNuevo.dnilector" required>
+            </div>
+    
+            <div class="form-group">
+              <label for="nombre">Nombre Completo:</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="lectorNuevo.nombre" required>
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Telefono:</label>
+              <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="lectorNuevo.telefono" required>
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="direccion">Dirección:</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="lectorNuevo.direccion" required>
+            </div>
+
+            <div class="form-group">
+              <label for="codigopostal">Codigo Postal:</label>
+              <input type="number" class="form-control" id="codigopostal" name="codigopostal" [(ngModel)]="lectorNuevo.codigopostal" required>
+            </div>
+
+            <div class="form-group">
+              <label for="observaciones">descripcion:</label>
+              <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="lectorNuevo.observaciones" required>
+            </div>
+          </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+    </div>
+  <input id="cerrar-modal" name="modal" type="radio" /> 
+<label for="cerrar-modal"> X </label> 
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>DNI</th>
+      <th>NOMBRE</th>
+      <th>TELEFONO</th>
+      <th>DIRECCION</th>
+      <th>COD. POSTAL</th>
+      <th>OBSERVACIONES</th>
+      <th></th>
+      <!-- Agregar más encabezados si hay más propiedades en los elementos -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lector of lector">
+      <td>{{ lector.dnilector }}</td>
+      <td>{{ lector.nombre }}</td>
+      <td>{{ lector.telefono }}</td>
+      <td>{{ lector.direccion }}</td>
+      <td>{{ lector.codigopostal }}</td>
+      <td>{{ lector.observaciones }}</td>
+      <td>
+        <!-- Botón de editar -->
+        <button  class="btn btn-success">Editar</button>
+        <!-- Botón de eliminar -->
+        <button (click)="eliminarLector(lector.dnilector)" class="btn btn-danger">Eliminar</button>
+      </td>
+      <!-- Mostrar más propiedades si hay más columnas en los elementos -->
+    </tr>
+  </tbody>
+</table>

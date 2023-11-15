@@ -1,0 +1,18 @@
+<header [ngClass]="!status ? 'header': 'header header--large'">
+  <div class="icon">
+    <i
+      class="fa fa-bars icon--size"
+      aria-hidden="true"
+      (click)="btnAction()"
+    ></i>
+  </div>
+  <div class="perfil">
+    <div class="left">
+      <figure class="perfil__photo">
+        <!-- <img src="assets/img/perfil.jpg" alt="" /> -->
+      </figure>
+      <div class="bolita"></div>
+    </div>
+    <p class="perfil__name">{{ nombre }}</p>
+  </div>
+</header>

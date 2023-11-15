@@ -1,0 +1,78 @@
+<input id="mostrar-modal" name="modal" type="radio" /> 
+  <label for="mostrar-modal"> Nuevo Alquiler </label>
+  <br>
+<div id="modal">
+    <div class="container">
+      <h3>AGREGAR NUEVO ALQUILER</h3>
+      <form (submit)="addAlquiler()">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dni_lector">Lector:</label>
+              <select class="custom-select" id="dni_lector" [(ngModel)]="alquilerNuevo.dni_lector" (change)="getIdLector($event)" required>
+                <option selected value="0">Seleccionar Opcion</option>
+                <option *ngFor="let lector of lector" [ngValue]="lector.dnilector">{{ lector.nombre }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="id_asin">Libro:</label>
+              <select class="custom-select" id="id_asin" [(ngModel)]="alquilerNuevo.id_asin" (change)="getIdLibro($event)" required>
+                <option selected value="0">Seleccionar Opcion</option>
+                <option *ngFor="let libro of libro" [ngValue]="libro.asin">{{ libro.titulo }}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="alquiler">Detalle:</label>
+              <input type="text" class="form-control" id="alquiler" name="alquiler" [(ngModel)]="alquilerNuevo.alquiler" required>
+            </div>
+          </div>
+    
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="salida">Fecha de salida:</label>
+              <input type="date" class="form-control" id="salida" name="salida" [(ngModel)]="alquilerNuevo.salida" required>
+            </div>
+
+            <div class="form-group">
+              <label for="entrada">Fecha de ingreso</label>
+              <input type="date" class="form-control" id="entrada" name="entrada" [(ngModel)]="alquilerNuevo.entrada" required>
+            </div>
+          </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+    </div>
+  <input id="cerrar-modal" name="modal" type="radio" /> 
+<label for="cerrar-modal"> X </label> 
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">LECTOR</th>
+        <th scope="col">LIBRO</th>
+        <th scope="col">FECHA SALIDA</th>
+        <th scope="col">FECHA ENTRADA</th>
+        <th scope="col">DETALLE</th>
+        <th scope="col"></th> <!-- Nueva columna para botones de eliminar y editar -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alquiler of alquiler">
+        <td>{{ alquiler.dni_lector.nombre }}</td>
+        <td>{{ alquiler.id_asin.titulo }}</td>
+        <td>{{ alquiler.salida }}</td>
+        <td>{{ alquiler.entrada }}</td>
+        <td>{{ alquiler.alquiler }}</td>
+        <td>
+          <!-- Botón de editar -->
+          <button (click)="editarAlquiler(alquiler.idalquiler)" class="btn btn-success">Editar</button>
+          <!-- Botón de eliminar -->
+          <button (click)="eliminarAlquiler(alquiler.idalquiler)" class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

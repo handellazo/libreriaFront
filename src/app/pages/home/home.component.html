@@ -1,0 +1,8 @@
+<!-- orden es (valor que se envia) = "funcion que lo recibe" -->
+<app-header (buttonSidebarAction)="recogerData($event)"></app-header>
+<!-- orden es [recibir] = "valor que se envia" -->
+<app-sidebar [sidebarStatusLarge]="sidebarStatusLarge"></app-sidebar>
+<!--  -->
+<div [ngClass]="!sidebarStatusLarge ? 'menu' : 'menu menu--large'">
+    <router-outlet></router-outlet>
+</div>
