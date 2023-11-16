@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PagesModule } from './pages/pages.module';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     //libro - este sera el componente que cargara inicialmente
-    path: '',
+    path: 'libro',
     loadChildren:()=>import('./libro/libro.module').then((e)=>e.LibroModule)
   },
   {

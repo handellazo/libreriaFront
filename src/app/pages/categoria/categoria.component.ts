@@ -60,4 +60,28 @@ export class CategoriaComponent implements OnInit{
       }
     })
   }
+
+  getCategoriaSingle(idcategoria:number){
+    this._CategoriaService.getCategoriaSingle(idcategoria).subscribe({
+      next: (res:any)=>{
+        console.log(res)
+        this.categoriaNuevo={...res
+        }
+      },error:(error : any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  updateCategoria(idcategoria: number) {
+    this._CategoriaService.editarCategoria(this.categoriaNuevo, idcategoria).subscribe({
+      next: (res: any) => {
+        this.categoriaNuevo = new Categoria();
+        this.getCategorias();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
+  }
 }

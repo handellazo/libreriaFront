@@ -3,8 +3,6 @@ import { IAutor } from 'src/app/Interface/autorInterface';
 import { Autor } from 'src/app/models/autor.model';
 import { AutorService } from 'src/app/services/autor.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-autor',
@@ -13,15 +11,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AutorComponent implements OnInit{
   autor : IAutor[] = [];
-  autorM : Autor[] = [];
-
-  editarForm = new FormGroup({
-    autor: new FormControl('')
-  })
   //Se instancia la clase para recibir objetos del html
   autorNuevo : Autor = new Autor();
 
-  constructor(private _AutorService: AutorService, private router:Router){}
+  constructor(private _AutorService: AutorService){}
 
   ngOnInit(): void {
     this.getAutores()
@@ -51,6 +44,11 @@ export class AutorComponent implements OnInit{
       next: (res:any)=>{
         console.log(res);
         this.getAutores();
+        Swal.fire({
+          title: "Good job!",
+          text: "Se elimino satisfactoriamente!",
+          icon: "success"
+        });
       },
       error: (error:any)=>{
         Swal.fire({
@@ -87,4 +85,3 @@ export class AutorComponent implements OnInit{
     });
   }
 }
-

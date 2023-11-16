@@ -16,6 +16,10 @@ export class LibroService {
     return this.httpClient.get<ILibro[]>(`${this.URL}LIBRO/listLibro`);
   }
 
+  getLibroSingle(idAsin: number):Observable<ILibro>{
+    return this.httpClient.get<ILibro>(`${this.URL}LIBRO/buscarLibroPorId/${idAsin}`)
+  }
+
   agregarLibro(libro:Libro){
     return this.httpClient.post<Libro>(`${this.URL}LIBRO/addLibro`, libro)
   }
@@ -23,4 +27,8 @@ export class LibroService {
   aliminarLibro(idAsin:number){
     return this.httpClient.delete(`${this.URL}LIBRO/deleteLibro/${idAsin}`)
   }
+
+  editarLibro(libro:Libro, idAsin:number){
+    return this.httpClient.put<Libro>(`${this.URL}LIBRO/updateLibro/${idAsin}`, libro)
+    }
 }

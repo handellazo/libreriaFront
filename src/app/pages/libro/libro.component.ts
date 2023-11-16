@@ -125,6 +125,11 @@ export class LibroComponent implements OnInit{
       next: (res:any)=>{
         console.log(res);
         this.getLibros();
+        Swal.fire({
+          title: "Good job!",
+          text: "Se elimino satisfactoriamente!",
+          icon: "success"
+        });
       },
       error: (error:any)=>{
         Swal.fire({
@@ -135,5 +140,29 @@ export class LibroComponent implements OnInit{
         console.log(error);
       }
     })
+  }
+
+  getLibroSingle(idAsin:number){
+    this._LibroService.getLibroSingle(idAsin).subscribe({
+      next: (res:any)=>{
+        console.log(res)
+        this.libroNuevo={...res
+        }
+      },error:(error : any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  updateLibro(idAsin: number) {
+    this._LibroService.editarLibro(this.libroNuevo, idAsin).subscribe({
+      next: (res: any) => {
+        this.libroNuevo = new Libro();
+        this.getLibros();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 }

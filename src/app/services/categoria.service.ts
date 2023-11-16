@@ -15,6 +15,10 @@ import { Categoria } from "../models/categoria.model";
     getCategorias():Observable<ICategoria[]>{
       return this.http.get<ICategoria[]>(`${this.URL}CATEGORIA/listCategoria`)
     }
+
+    getCategoriaSingle(idcategoria: number):Observable<ICategoria>{
+      return this.http.get<ICategoria>(`${this.URL}CATEGORIA/buscarCategoriaPorId/${idcategoria}`)
+    }
   
     //post es con model para recibir datos
     agregarCategoria(categoria:Categoria){
@@ -25,4 +29,8 @@ import { Categoria } from "../models/categoria.model";
     eliminarCategoria(idcategoria:number){
       return this.http.delete(`${this.URL}CATEGORIA/deleteCategoria/${idcategoria}`)
     }
+
+    editarCategoria(categoria:Categoria, idcategoria:number){
+      return this.http.put<Categoria>(`${this.URL}CATEGORIA/updateCategoria/${idcategoria}`, categoria)
+      }
   }

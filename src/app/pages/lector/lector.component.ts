@@ -44,6 +44,11 @@ export class LectorComponent implements OnInit{
       next: (res:any)=>{
         console.log(res);
         this.getLectores();
+        Swal.fire({
+          title: "Good job!",
+          text: "Se elimino satisfactoriamente!",
+          icon: "success"
+        });
       },
       error: (error:any)=>{
         Swal.fire({
@@ -54,5 +59,29 @@ export class LectorComponent implements OnInit{
         console.log(error);
       }
     })
+  }
+
+  getLectorSingle(dnilector:number){
+    this._LectorService.getLectorSingle(dnilector).subscribe({
+      next: (res:any)=>{
+        console.log(res)
+        this.lectorNuevo={...res
+        }
+      },error:(error : any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  updateLector(dnilector: number) {
+    this._LectorService.editarLector(this.lectorNuevo, dnilector).subscribe({
+      next: (res: any) => {
+        this.lectorNuevo = new Lector();
+        this.getLectores();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 }

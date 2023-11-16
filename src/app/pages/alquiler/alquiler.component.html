@@ -1,54 +1,121 @@
-<input id="mostrar-modal" name="modal" type="radio" /> 
-  <label for="mostrar-modal"> Nuevo Alquiler </label>
-  <br>
-<div id="modal">
-    <div class="container">
-      <h3>AGREGAR NUEVO ALQUILER</h3>
-      <form (submit)="addAlquiler()">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="dni_lector">Lector:</label>
-              <select class="custom-select" id="dni_lector" [(ngModel)]="alquilerNuevo.dni_lector" (change)="getIdLector($event)" required>
-                <option selected value="0">Seleccionar Opcion</option>
-                <option *ngFor="let lector of lector" [ngValue]="lector.dnilector">{{ lector.nombre }}</option>
-              </select>
-            </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarAlquiler">
+  Nuevo Alquiler
+</button>
 
-            <div class="form-group">
-              <label for="id_asin">Libro:</label>
-              <select class="custom-select" id="id_asin" [(ngModel)]="alquilerNuevo.id_asin" (change)="getIdLibro($event)" required>
-                <option selected value="0">Seleccionar Opcion</option>
-                <option *ngFor="let libro of libro" [ngValue]="libro.asin">{{ libro.titulo }}</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="alquiler">Detalle:</label>
-              <input type="text" class="form-control" id="alquiler" name="alquiler" [(ngModel)]="alquilerNuevo.alquiler" required>
+<!-- Modal Agregar Alquiler -->
+<div class="modal fade" id="AgregarAlquiler" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Agregar Alquiler</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="addAlquiler()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dni_lector">Lector:</label>
+                <select class="custom-select" id="dni_lector" [(ngModel)]="alquilerNuevo.dni_lector" (change)="getIdLector($event)" required>
+                  <option selected value="0">Seleccionar Opcion</option>
+                  <option *ngFor="let lector of lector" [ngValue]="lector.dnilector">{{ lector.nombre }}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="id_asin">Libro:</label>
+                <select class="custom-select" id="id_asin" [(ngModel)]="alquilerNuevo.id_asin" (change)="getIdLibro($event)" required>
+                  <option selected value="0">Seleccionar Opcion</option>
+                  <option *ngFor="let libro of libro" [ngValue]="libro.asin">{{ libro.titulo }}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="alquiler">Detalle:</label>
+                <input type="text" class="form-control" id="alquiler" name="alquiler" [(ngModel)]="alquilerNuevo.alquiler" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="salida">Fecha de salida:</label>
+                <input type="date" class="form-control" id="salida" name="salida" [(ngModel)]="alquilerNuevo.salida" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="entrada">Fecha de ingreso</label>
+                <input type="date" class="form-control" id="entrada" name="entrada" [(ngModel)]="alquilerNuevo.entrada" required>
+              </div>
             </div>
           </div>
-    
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="salida">Fecha de salida:</label>
-              <input type="date" class="form-control" id="salida" name="salida" [(ngModel)]="alquilerNuevo.salida" required>
-            </div>
-
-            <div class="form-group">
-              <label for="entrada">Fecha de ingreso</label>
-              <input type="date" class="form-control" id="entrada" name="entrada" [(ngModel)]="alquilerNuevo.entrada" required>
-            </div>
-          </div>
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+        
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
     </div>
-  <input id="cerrar-modal" name="modal" type="radio" /> 
-<label for="cerrar-modal"> X </label> 
+  </div>
 </div>
 
+<!-- Modal Actualizar Alquiler -->
+<div class="modal fade" id="ActualizarAlquiler" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Actualizar Alquiler</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="updateAlquiler(alquilerNuevo.idalquiler)">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="hidden" id="idalquiler" name="idalquiler" [(ngModel)]="alquilerNuevo.idalquiler">
+              <div class="form-group">
+                <label for="dni_lector">Lector:</label>
+                <select class="custom-select" id="dni_lector" [(ngModel)]="alquilerNuevo.dni_lector" (change)="getIdLector($event)" required>
+                  <option selected value="0">Seleccionar Opcion</option>
+                  <option *ngFor="let lector of lector" [ngValue]="lector.dnilector">{{ lector.nombre }}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="id_asin">Libro:</label>
+                <select class="custom-select" id="id_asin" [(ngModel)]="alquilerNuevo.id_asin" (change)="getIdLibro($event)" required>
+                  <option selected value="0">Seleccionar Opcion</option>
+                  <option *ngFor="let libro of libro" [ngValue]="libro.asin">{{ libro.titulo }}</option>
+                </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="alquiler">Detalle:</label>
+                <input type="text" class="form-control" id="alquiler" name="alquiler" [(ngModel)]="alquilerNuevo.alquiler" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="salida">Fecha de salida:</label>
+                <input type="date" class="form-control" id="salida" name="salida" [(ngModel)]="alquilerNuevo.salida" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="entrada">Fecha de ingreso</label>
+                <input type="date" class="form-control" id="entrada" name="entrada" [(ngModel)]="alquilerNuevo.entrada" required>
+              </div>
+            </div>
+          </div>
+        
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabla Alquiler -->
 <table class="table">
     <thead>
       <tr>
@@ -64,12 +131,12 @@
       <tr *ngFor="let alquiler of alquiler">
         <td>{{ alquiler.dni_lector.nombre }}</td>
         <td>{{ alquiler.id_asin.titulo }}</td>
-        <td>{{ alquiler.salida }}</td>
-        <td>{{ alquiler.entrada }}</td>
+        <td>{{ formatearFecha(alquiler.salida) }}</td>
+        <td>{{ formatearFecha(alquiler.entrada) }}</td>
         <td>{{ alquiler.alquiler }}</td>
         <td>
           <!-- Botón de editar -->
-          <button (click)="editarAlquiler(alquiler.idalquiler)" class="btn btn-success">Editar</button>
+          <button (click)="getAlquilerSingle(alquiler.idalquiler)" class="btn btn-success" data-target="#ActualizarAlquiler" data-toggle="modal">Editar</button>
           <!-- Botón de eliminar -->
           <button (click)="eliminarAlquiler(alquiler.idalquiler)" class="btn btn-danger">Eliminar</button>
         </td>

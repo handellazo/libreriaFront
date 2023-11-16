@@ -10,32 +10,32 @@ export class SidebarComponent implements OnInit{
   @Input('sidebarStatusLarge') sidebarStatusLarge:boolean=false;
   
   menus:Array<any> = [{
-    link:'/alquiler',
+    link:'/home/alquiler',
     name:'Alquiler',
     icon:'fa-solid fa-business-time'
   },
   {
-    link:'',
+    link:'/home/libro',
     name:'Libro',
     icon:'fa-solid fa-book'
   },
   {
-    link:'/lector',
+    link:'/home/lector',
     name:'Lector',
     icon:'fa-solid fa-book-open-reader'
   },
   {
-    link:'/autor',
+    link:'/home/autor',
     name:'Autor',
     icon:'fa-solid fa-person'
   },
   {
-    link:'/categoria',
+    link:'/home/categoria',
     name:'Categoria',
     icon:'fa-regular fa-address-book'
   },
   {
-    link:'/editorial',
+    link:'/home/editorial',
     name:'Editorial',
     icon:'fa-solid fa-file'
   }

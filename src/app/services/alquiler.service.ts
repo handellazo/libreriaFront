@@ -16,6 +16,10 @@ export class AlquilerService {
     return this.httpClient.get<IAlquiler[]>(`${this.URL}ALQUILER/listAlquiler`);
   }
 
+  getAlquilerSingle(idalquiler: number):Observable<IAlquiler>{
+    return this.httpClient.get<IAlquiler>(`${this.URL}ALQUILER/buscarAlquilerPorId/${idalquiler}`)
+  }
+
   agregarAlquiler(alquiler:Alquiler){
     return this.httpClient.post<Alquiler>(`${this.URL}ALQUILER/addAlquiler`, alquiler)
   }
@@ -23,4 +27,8 @@ export class AlquilerService {
   eliminarAlquiler(idalquiler:number){
     return this.httpClient.delete(`${this.URL}ALQUILER/deleteAlquiler/${idalquiler}`)
   }
+
+  editarAlquiler(alquiler:Alquiler, idalquiler:number){
+    return this.httpClient.put<Alquiler>(`${this.URL}ALQUILER/updateAlquiler/${idalquiler}`, alquiler)
+    }
 }

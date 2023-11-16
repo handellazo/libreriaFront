@@ -1,7 +1,9 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarEditorial">
   Nueva Editorial
 </button>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal Agregar Editorial -->
+<div class="modal fade" id="agregarEditorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,6 +17,32 @@
             <label for="editorial">Nombre de la Editorial: </label>
             <input type="text" id="editorial" name="editorial" [(ngModel)]="editorialNuevo.editorial" required>
             <br><button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Actualizar Editorial -->
+<div class="modal fade" id="ActualizarEditorial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Actualizar Editorial</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form (submit)="updateEditorial(editorialNuevo.ideditorial)">
+            <label for="editorial">Nombre de la Editorial: </label>
+            <input type="hidden" id="ideditorial" name="ideditorial" [(ngModel)]="editorialNuevo.ideditorial">
+            <input type="text" id="editorial" name="editorial" [(ngModel)]="editorialNuevo.editorial" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           </form>
       </div>
@@ -38,7 +66,7 @@
 
       <td>
         <!-- Botón de editar -->
-        <button  class="btn btn-success">Editar</button>
+        <button (click)="getEditorialSingle(editoriales.ideditorial)" class="btn btn-success" data-target="#ActualizarEditorial" data-toggle="modal">Editar</button>
         <!-- Botón de eliminar -->
         <button (click)="eliminarEditorial(editoriales.ideditorial)" class="btn btn-danger">Eliminar</button>
       </td>

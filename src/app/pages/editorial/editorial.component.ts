@@ -45,6 +45,11 @@ export class EditorialComponent {
       next: (res:any)=>{
         console.log(res);
         this.getEditoriales();
+        Swal.fire({
+          title: "Good job!",
+          text: "Se elimino satisfactoriamente!",
+          icon: "success"
+        });
       },
       error: (error:any)=>{
         Swal.fire({
@@ -55,5 +60,29 @@ export class EditorialComponent {
         console.log(error);
       }
     })
+  }
+
+  getEditorialSingle(ideditorial:number){
+    this._EditorialService.getEditorialSingle(ideditorial).subscribe({
+      next: (res:any)=>{
+        console.log(res)
+        this.editorialNuevo={...res
+        }
+      },error:(error : any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  updateEditorial(ideditorial: number) {
+    this._EditorialService.editarEditorial(this.editorialNuevo, ideditorial).subscribe({
+      next: (res: any) => {
+        this.editorialNuevo = new Editorial();
+        this.getEditoriales();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 }

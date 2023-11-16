@@ -6,6 +6,8 @@ import { Alquiler } from 'src/app/models/alquiler.model';
 import { AlquilerService } from 'src/app/services/alquiler.service';
 import { LectorService } from 'src/app/services/lector.service';
 import { LibroService } from 'src/app/services/libro.service';
+import { DatePipe } from '@angular/common'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alquiler',
@@ -17,16 +19,27 @@ export class AlquilerComponent {
   lector: ILector[] = [];
   libro: ILibro[] = [];
 
+  datePipe: DatePipe = new DatePipe('en-US');
+
   alquilerNuevo : Alquiler = new Alquiler();
   
   constructor(private _LibroService: LibroService, 
               private _AlquilerService:AlquilerService, 
               private _LectorService:LectorService){}
-
+              
   ngOnInit(): void {
     this.getLibros()
     this.getAlquileres()
     this.getLectores()
+  }
+
+  formatearFecha(fecha: string | Date): string {
+    if (typeof fecha === 'string') {
+      return this.datePipe.transform(fecha, 'dd-MM-yyyy') || '';
+    } else if (fecha instanceof Date) {
+      return this.datePipe.transform(fecha.toString(), 'dd-MM-yyyy') || '';
+    }
+    return '';
   }
 
   public getLibros(){
@@ -98,10 +111,44 @@ export class AlquilerComponent {
       next: (res:any)=>{
         console.log(res);
         this.getAlquileres();
+        Swal.fire({
+          title: "Good job!",
+          text: "Se elimino satisfactoriamente!",
+          icon: "success"
+        });
       },
       error: (error:any)=>{
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "El autor esta integrado en un Libro - No puede ser eliminado",
+        });
         console.log(error);
       }
     })
+  }
+
+  getAlquilerSingle(idalquiler:number){
+    this._AlquilerService.getAlquilerSingle(idalquiler).subscribe({
+      next: (res:any)=>{
+        console.log(res)
+        this.alquilerNuevo={...res
+        }
+      },error:(error : any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  updateAlquiler(idalquiler: number) {
+    this._AlquilerService.editarAlquiler(this.alquilerNuevo, idalquiler).subscribe({
+      next: (res: any) => {
+        this.alquilerNuevo = new Alquiler();
+        this.getAlquileres();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    });
   }
 }

@@ -16,6 +16,10 @@ export class EditorialService {
     return this.httpClient.get<IEditorial[]>(`${this.URL}EDITORIAL/listEditorial`);
   }
 
+  getEditorialSingle(ideditorial: number):Observable<IEditorial>{
+    return this.httpClient.get<IEditorial>(`${this.URL}EDITORIAL/buscarEditorialPorId/${ideditorial}`)
+  }
+
   agregarEditorial(editorial:Editorial){
     return this.httpClient.post<Editorial>(`${this.URL}EDITORIAL/addEditorial`, editorial)
   }
@@ -24,5 +28,7 @@ export class EditorialService {
     return this.httpClient.delete(`${this.URL}EDITORIAL/deleteEditorial/${ideditorial}`)
   }
 
-  
+  editarEditorial(editorial:Editorial, ideditorial:number){
+    return this.httpClient.put<Editorial>(`${this.URL}EDITORIAL/updateEditorial/${ideditorial}`, editorial)
+    }
 }

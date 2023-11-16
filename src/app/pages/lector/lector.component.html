@@ -1,51 +1,115 @@
-<input id="mostrar-modal" name="modal" type="radio" /> 
-  <label for="mostrar-modal"> Nuevo Lector </label>
-  <br>
-<div id="modal">
-    <div class="container">
-      <h3>AGREGAR NUEVO LECTOR</h3>
-      <form (submit)="addLector()">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="dnilector">DNI:</label>
-              <input type="number" class="form-control" id="dnilector" name="dnilector" [(ngModel)]="lectorNuevo.dnilector" required>
-            </div>
-    
-            <div class="form-group">
-              <label for="nombre">Nombre Completo:</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="lectorNuevo.nombre" required>
-            </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AgregarLector">
+  Nuevo Lector
+</button>
 
-            <div class="form-group">
-              <label for="telefono">Telefono:</label>
-              <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="lectorNuevo.telefono" required>
+<!-- Modal Agregar Autor -->
+<div class="modal fade" id="AgregarLector" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Agregar Lector</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="addLector()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dnilector">DNI:</label>
+                <input type="number" class="form-control" id="dnilector" name="dnilector" [(ngModel)]="lectorNuevo.dnilector" required>
+              </div>
+      
+              <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="lectorNuevo.nombre" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="lectorNuevo.telefono" required>
+              </div>
+            
+              <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="lectorNuevo.direccion" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="codigopostal">Codigo Postal:</label>
+                <input type="number" class="form-control" id="codigopostal" name="codigopostal" [(ngModel)]="lectorNuevo.codigopostal" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="observaciones">descripcion:</label>
+                <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="lectorNuevo.observaciones" required>
+              </div>
             </div>
           </div>
-    
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="direccion">Dirección:</label>
-              <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="lectorNuevo.direccion" required>
-            </div>
-
-            <div class="form-group">
-              <label for="codigopostal">Codigo Postal:</label>
-              <input type="number" class="form-control" id="codigopostal" name="codigopostal" [(ngModel)]="lectorNuevo.codigopostal" required>
-            </div>
-
-            <div class="form-group">
-              <label for="observaciones">descripcion:</label>
-              <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="lectorNuevo.observaciones" required>
-            </div>
-          </div>
-        </div>
-    
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+      
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
     </div>
-  <input id="cerrar-modal" name="modal" type="radio" /> 
-<label for="cerrar-modal"> X </label> 
+  </div>
+</div>
+
+<!-- Modal Editar Autor -->
+<div class="modal fade" id="ActualizarLector" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Actualizar Lector</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (submit)="updateLector(lectorNuevo.dnilector)">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="dnilector">DNI:</label>
+                <input type="number" class="form-control" id="dnilector" name="dnilector" [(ngModel)]="lectorNuevo.dnilector" required>
+              </div>
+      
+              <div class="form-group">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="lectorNuevo.nombre" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input type="number" class="form-control" id="telefono" name="telefono" [(ngModel)]="lectorNuevo.telefono" required>
+              </div>
+            
+              <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="lectorNuevo.direccion" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="codigopostal">Codigo Postal:</label>
+                <input type="number" class="form-control" id="codigopostal" name="codigopostal" [(ngModel)]="lectorNuevo.codigopostal" required>
+              </div>
+  
+              <div class="form-group">
+                <label for="observaciones">descripcion:</label>
+                <input type="text" class="form-control" id="observaciones" name="observaciones" [(ngModel)]="lectorNuevo.observaciones" required>
+              </div>
+            </div>
+          </div>
+      
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
+    </div>
+  </div>
 </div>
 
 <table class="table">
@@ -71,7 +135,7 @@
       <td>{{ lector.observaciones }}</td>
       <td>
         <!-- Botón de editar -->
-        <button  class="btn btn-success">Editar</button>
+        <button (click)="getLectorSingle(lector.dnilector)" class="btn btn-success" data-target="#ActualizarLector" data-toggle="modal">Editar</button>
         <!-- Botón de eliminar -->
         <button (click)="eliminarLector(lector.dnilector)" class="btn btn-danger">Eliminar</button>
       </td>

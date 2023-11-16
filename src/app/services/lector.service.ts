@@ -16,6 +16,10 @@ export class LectorService {
     return this.httpClient.get<ILector[]>(`${this.URL}LECTOR/listLector`);
   }
 
+  getLectorSingle(dnilector: number):Observable<ILector>{
+    return this.httpClient.get<ILector>(`${this.URL}LECTOR/buscarLectorPorId/${dnilector}`)
+  }
+
   agregarLector(lector:Lector){
     return this.httpClient.post<Lector>(`${this.URL}LECTOR/addLector`, lector)
   }
@@ -23,4 +27,8 @@ export class LectorService {
   eliminarLector(idlector:number){
     return this.httpClient.delete(`${this.URL}LECTOR/deleteLector/${idlector}`)
   }
+
+  editarLector(lector:Lector, dnilector:number){
+    return this.httpClient.put<Lector>(`${this.URL}LECTOR/updateLector/${dnilector}`, lector)
+    }
 }

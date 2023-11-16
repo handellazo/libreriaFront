@@ -1,7 +1,9 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarCategoria">
   Nueva Categoria
 </button>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal Agregar Categoria -->
+<div class="modal fade" id="agregarCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,7 +14,7 @@
       </div>
       <div class="modal-body">
           <form (submit)="addCategoria()">
-            <label for="categoria">Nombre del Autor: </label>
+            <label for="categoria">Nombre de la categoria: </label>
             <input type="text" id="categoria" name="categoria" [(ngModel)]="categoriaNuevo.categoria" required>
             <br><button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -23,6 +25,33 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Editar Categoria -->
+<div class="modal fade" id="ActualizarCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Actualizar Categoria</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form (submit)="updateCategoria(categoriaNuevo.idcategoria)">
+            <label for="categoria">Nombre de la categoria: </label>
+            <input type="hidden" id="idcategoria" name="idcategoria" [(ngModel)]="categoriaNuevo.idcategoria">
+            <input type="text" id="categoria" name="categoria" [(ngModel)]="categoriaNuevo.categoria" required>
+            <br>
+            <button type="submit" class="btn btn-primary" >Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </form>
+      </div>
+      <div class="modal-footer"> 
+      </div>
+    </div>
+  </div>
+</div>
+
 <table class="table">
     <thead>
       <tr>
@@ -35,7 +64,7 @@
         <td>{{ categoria.categoria }}</td>
         <td>
           <!-- Botón de editar -->
-          <button class="btn btn-success">Editar</button> 
+          <button (click)="getCategoriaSingle(categoria.idcategoria)" class="btn btn-success" data-target="#ActualizarCategoria" data-toggle="modal">Editar</button> 
           <!-- Botón de eliminar -->
           <button (click)="eliminarCategoria(categoria.idcategoria)" class="btn btn-danger">Eliminar</button>
         </td>
